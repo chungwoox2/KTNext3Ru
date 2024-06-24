@@ -72,9 +72,16 @@ feature-<작업페이지 이름>-<기능이름 또는 본인이름> (팀원간 �
 [2] CLI<br>
 `git push origin feature-<작업페이지 이름>`
 
-## 5. 원본 레포에 PR & Merge
+## 5. 포크한 레포 PR & Merge
 
+포크한 레포에서 먼저 충돌나는지 확인
+sync fork한 후,
+**포크한 레포**의 main <- 작업 브랜치 pr & merge
+충돌 없으면 원본 레포로 pr
 ‼️ 반드시 원본 레포의 **feature**로 pr 요청할 것<br>
+
+## 6. 원본 레포 PR & Merge
+
 **팀장**이 **순차적으로** pr 생성 & merge 진행<br>
 **‼️ 충돌 발생시 반드시 팀원과 같이 수정할 것**<br>
 [1] feature <- feature-<작업페이지 이름><br>
