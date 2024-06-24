@@ -1,7 +1,7 @@
 // pages/pitch.tsx
 
 import PlayerDashBoard from "@/components/PlayerDashBoard/PlayerDashBoard";
-import PlayerList from "@/components/PlayerList/PlayerList";
+import TodayPlayerCon from "@/components/TodayPlayerCon/TodayPlayerCon";
 import React from "react";
 
 const PitchPage = () => {
@@ -18,9 +18,9 @@ const PitchPage = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8 ml-40">Player Profiles</h1>
+      <h1 className="text-3xl font-bold mb-8 ml-40">오늘 경기 선수들</h1>
       <div className="flex flex-wrap justify-start min-h-screen bg-gray-100 p-8">
-        <PlayerList players={players} />
+        <TodayPlayerCon players={players} />
       </div>
     </div>
   );
