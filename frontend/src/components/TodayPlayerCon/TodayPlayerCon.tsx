@@ -5,34 +5,38 @@ interface PlayerListProps {
   players: {
     name: string;
     imageUrl: string;
-    number?: string;
+    number: string;
+    position: {
+      top: string;
+      left: string;
+    };
+    role: string;
   }[];
 }
 
 const TodayPlayerCon: React.FC<PlayerListProps> = ({ players }) => {
   return (
-    <div className="flex flex-wrap">
-      <div className="grid grid-cols-2 gap-6 ml-40">
-        {players.slice(0, 10).map((player, index) => (
-          <div key={index} className="flex flex-col items-center border border-gray-200 rounded-lg p-6 shadow-md">
-            <div className="relative w-24 h-24 mb-4">
-              <Image src={player.imageUrl} alt={`${player.name}'s picture`} layout="fill" className="rounded-full" />
-            </div>
-            <div className="flex items-center">
-              <span className="text-orange-500">No. {player.number}</span>
-              <span className="font-bold text-gray-600 ml-2">{player.name}</span>
+    <div>
+      <div className="relative">
+        <Image src="/images/Field.jpg" alt="야구장임" width={1500} height={1500} />
+        {players.map((player, index) => (
+          <div key={index}>
+            <div key={index} className="absolute border border-black" style={{ top: player.position.top, left: player.position.left }}>
+              <div className="text-black text-sm">No. {player.number}</div>
+              <div className="relative">
+                <Image src={player.imageUrl} alt={player.name} width={96} height={96} />
+                <div className="flex justify-end border">
+                  <div className="bg-orange-500 absolute" style={{ top: "74%", left: "80%" }}>
+                    {player.role}
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-center bg-orange-500">
+                <span>{player.name}</span>
+              </div>
             </div>
           </div>
         ))}
-      </div>
-      <div className="relative">
-        <Image src="/images/야구장.jpg" alt="야구장임" width={700} height={700} />
-        <div className="absolute top-[50%] left-[25%]">
-          <Image src="/images/pitcher/강건.jpg" alt="중견수" width={96} height={96} />
-        </div>
-        <div className="absolute top-[75%] left-[75%]">
-          <Image src="/images/pitcher/고영표.jpg" alt="포수" width={96} height={96} />
-        </div>
       </div>
     </div>
   );
