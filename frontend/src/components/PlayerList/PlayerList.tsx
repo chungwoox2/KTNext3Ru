@@ -4,24 +4,50 @@ import React from "react";
 import Image from "next/image";
 
 interface PlayerListProps {
-  players: {
+  players2: {
     name: string;
     imageUrl: string;
-    number?: string;
+    number: string;
+    position: {
+      top: string;
+      left: string;
+    };
+    role: string;
+    rating: number;
   }[];
 }
 
-const PlayerList: React.FC<PlayerListProps> = ({ players }) => {
+const getColorClass = (rating: number) => {
+  if (rating < 3.0) {
+    return "bg-red-500";
+  } else if (rating < 5.0) {
+    return "bg-orange-500";
+  } else if (rating < 8.0) {
+    return "bg-green-500";
+  } else {
+    return "bg-blue-500";
+  }
+};
+
+const PlayerList: React.FC<PlayerListProps> = ({ players2 }) => {
   return (
-    <div className="ml-40">
-      {players.map((player, index) => (
-        <div key={index} className="flex flex-col items-center border border-gray-200 rounded-lg p-6 shadow-md">
-          <div className="relative w-24 h-24 mb-4">
-            <Image src={player.imageUrl} alt={`${player.name}'s picture`} layout="fill" className="rounded-full" />
-          </div>
-          <div className="flex items-center">
-            <span className="text-orange-500">No. {player.number}</span>
-            <span className="font-bold text-gray-600 ml-2">{player.name}</span>
+    <div className="flex flex-col">
+      {players2.map((player, index) => (
+        <div key={index}>
+          <div key={index} className=" relative border border-black my-4">
+            <div className={`absolute rounded-lg p-1  ${getColorClass(player.rating)}`} style={{ top: "-14%", left: "85%" }}>
+              {player.rating}
+            </div>
+            <div className="text-black text-sm">No. {player.number}</div>
+            <div className="relative">
+              <Image src={player.imageUrl} alt={player.name} width={96} height={96} />
+              <div className="bg-black text-white absolute" style={{ top: "74%", left: "80%" }}>
+                {player.role}
+              </div>
+            </div>
+            <div className="flex justify-center bg-black text-white">
+              <span>{player.name}</span>
+            </div>
           </div>
         </div>
       ))}
